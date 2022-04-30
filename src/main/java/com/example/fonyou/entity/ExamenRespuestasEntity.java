@@ -21,7 +21,7 @@ public class ExamenRespuestasEntity {
 
     private String respuesta;
 
-    private String puntaje;
+    private Boolean correcta;
 
     @JsonBackReference
     @ManyToOne

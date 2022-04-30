@@ -13,22 +13,23 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "preguntas")
-public class ExamenPreguntaEntity {
+@Table(name = "examen")
+public class ExamenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String pregunta;
+    private String nombre;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "pregunta", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ExamenRespuestasEntity> respuestas;
+    @OneToMany(mappedBy = "examen", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExamenPreguntaEntity> preguntas;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "examen")
-    ExamenEntity examen;
+    @JoinColumn(name = "estudiantes")
+    EstudianteEntity estudiante;
+
 
 }

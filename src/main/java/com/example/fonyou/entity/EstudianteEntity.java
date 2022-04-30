@@ -2,11 +2,13 @@ package com.example.fonyou.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,5 +29,9 @@ public class EstudianteEntity {
     @ManyToOne
     @JoinColumn(name = "ciudades")
     CiudadEntity ciudad;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExamenEntity> examen;
 
 }
